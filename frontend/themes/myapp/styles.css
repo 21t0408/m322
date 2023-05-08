@@ -1,0 +1,30 @@
+@import url('./views/hello-world-view.css');
+@import url('./views/dashboard-view.css');
+@import url('./views/person-form-view.css');
+@import url('./views/image-list-view.css');
+@import url('./views/person-form2-view.css');    html {
+      --lumo-base-color: #1c232b;
+      --lumo-primary-color: hsl(214, 100%, 50%);
+      --lumo-primary-color-50pct: hsla(214, 100%, 50%, 0.5);
+      --lumo-primary-color-10pct: hsla(214, 100%, 50%, 0.1);
+      --lumo-error-color: hsl(3, 100%, 50%);
+      --lumo-error-color-50pct: hsla(3, 100%, 50%, 0.5);
+      --lumo-error-color-10pct: hsla(3, 100%, 50%, 0.1);
+      --lumo-shade: hsl(214, 100%, 72%);
+      --lumo-shade-5pct: hsla(214, 100%, 72%, 0.05);
+      --lumo-shade-10pct: hsla(214, 100%, 72%, 0.1);
+      --lumo-shade-20pct: hsla(214, 100%, 72%, 0.2);
+      --lumo-shade-30pct: hsla(214, 100%, 72%, 0.3);
+      --lumo-shade-40pct: hsla(214, 100%, 72%, 0.4);
+      --lumo-shade-50pct: hsla(214, 100%, 72%, 0.5);
+      --lumo-shade-60pct: hsla(214, 100%, 72%, 0.6);
+      --lumo-shade-70pct: hsla(214, 100%, 72%, 0.7);
+      --lumo-shade-80pct: hsla(214, 100%, 72%, 0.8);
+      --lumo-shade-90pct: hsla(214, 100%, 72%, 0.9);
+      --lumo-success-color: hsl(145, 100%, 50%);
+      --lumo-success-color-50pct: hsla(145, 100%, 50%, 0.5);
+      --lumo-success-color-10pct: hsla(145, 100%, 50%, 0.1);
+      --lumo-body-text-color: hsla(214, 100%, 69%, 0.94);
+      --lumo-primary-text-color: hsl(214, 100%, 93%);
+
+    }
