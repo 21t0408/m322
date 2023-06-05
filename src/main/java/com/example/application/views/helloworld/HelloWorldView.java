@@ -34,7 +34,7 @@ import java.util.List;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 
-@PageTitle("Hello World")
+@PageTitle("Newsletter beitreten")
 @Route(value = "hello-world")
 @Uses(Icon.class)
 public class HelloWorldView extends Div {
