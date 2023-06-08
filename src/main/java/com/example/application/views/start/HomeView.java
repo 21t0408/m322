@@ -2,6 +2,8 @@ package com.example.application.views.start;
 
 import com.example.application.views.dashboard.DashboardView;
 import com.example.application.views.imagelist.MenuView;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -34,15 +36,20 @@ public class HomeView extends VerticalLayout {
         mainContainer.addClassNames(AlignItems.CENTER);
     
         VerticalLayout headerContainer = new VerticalLayout();
-        headerContainer.addClassNames(Margin.Top.XLARGE, Margin.Bottom.XLARGE, AlignItems.CENTER);
+        headerContainer.addClassNames(Margin.Top.SMALL, Margin.Bottom.MEDIUM, AlignItems.CENTER);
     
         H2 header = new H2("Noah's Pizza");
         header.addClassNames(FontSize.XXXLARGE, Margin.Bottom.NONE, AlignItems.CENTER);
     
         Paragraph description = new Paragraph("077 458 10 06");
         description.addClassNames(Margin.Top.NONE, TextColor.SECONDARY, AlignItems.CENTER);
+
+        Div backButtonLayout = new Div();
+        Button button = new Button("Newsletter beitreten");
+        button.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(HomeView.class)));
+        backButtonLayout.add(button);
     
-        headerContainer.add(header, description);
+        headerContainer.add(header, description, backButtonLayout);
     
         HorizontalLayout cardContainer = new HorizontalLayout();
         cardContainer.addClassNames(Gap.MEDIUM, AlignItems.CENTER);

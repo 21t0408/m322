@@ -31,7 +31,7 @@ public class MenuView extends Main {
         mainContainer.addClassNames(AlignItems.CENTER);
 
         VerticalLayout headerContainer = new VerticalLayout();
-        headerContainer.addClassNames(Margin.Top.XLARGE, Margin.Bottom.XLARGE, AlignItems.CENTER);
+        headerContainer.addClassNames(Margin.Top.SMALL, Margin.Bottom.MEDIUM, AlignItems.CENTER);
 
         H2 header = new H2("Menükarte");
         header.addClassNames(FontSize.XXXLARGE, Margin.Bottom.NONE, AlignItems.CENTER);
@@ -49,11 +49,11 @@ public class MenuView extends Main {
         );
 
         VerticalLayout backContainer = new VerticalLayout();
-        backContainer.addClassNames(Margin.Top.XLARGE, Margin.Bottom.XLARGE, AlignItems.CENTER);
+        backContainer.addClassNames(Margin.Top.SMALL, Margin.Bottom.XLARGE, AlignItems.CENTER);
 
         Div backButtonLayout = new Div();
-        backButtonLayout.addClassName(Background.CONTRAST_5);
         Button back = new Button("Zueück");
+        back.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(HomeView.class)));
         backButtonLayout.add(back);
 
         backContainer.add(backButtonLayout);
