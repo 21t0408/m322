@@ -1,6 +1,7 @@
 package com.example.application.views.start;
 
 import com.example.application.views.dashboard.DashboardView;
+import com.example.application.views.imagelist.MenuView;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -49,7 +50,9 @@ public class HomeView extends VerticalLayout {
         HomeCardView card1 = new HomeCardView("Bestellungen", "icons/bestellungen.png");
         card1.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(DashboardView.class)));
         HomeCardView card2 = new HomeCardView("Menükarte", "icons/menuKarte.png");
+        card2.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(MenuView.class)));
         HomeCardView card3 = new HomeCardView("Kontakt", "icons/kontakt.png");
+        card3.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(DashboardView.class)));
 
         cardContainer.add(card1, card2, card3);
     

@@ -28,7 +28,7 @@ public class HomeCardView extends ListItem {
         Div div = new Div();
         div.addClassNames(Display.FLEX, AlignItems.CENTER, JustifyContent.CENTER, Margin.Bottom.MEDIUM, Overflow.HIDDEN,
                 BorderRadius.MEDIUM);
-        div.setHeight("250px");
+        div.setHeight("200px");
     
         Image image = new Image(url, title);
         image.addClassNames(Margin.Bottom.MEDIUM);
