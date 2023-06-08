@@ -2,6 +2,7 @@ package com.example.application.views.start;
 
 import com.example.application.views.dashboard.DashboardView;
 import com.example.application.views.imagelist.MenuView;
+import com.example.application.views.personform.NewsletterView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
@@ -30,13 +31,13 @@ public class HomeView extends VerticalLayout {
     
     private void constructUI() {
         addClassNames("home-view");
-        addClassNames(MaxWidth.SCREEN_LARGE, Margin.Horizontal.AUTO, Padding.Bottom.LARGE, AlignItems.CENTER);
+        addClassNames(MaxWidth.SCREEN_LARGE, Margin.Horizontal.AUTO, Padding.Bottom.MEDIUM, AlignItems.CENTER);
     
         VerticalLayout mainContainer = new VerticalLayout();
         mainContainer.addClassNames(AlignItems.CENTER);
     
         VerticalLayout headerContainer = new VerticalLayout();
-        headerContainer.addClassNames(Margin.Top.SMALL, Margin.Bottom.MEDIUM, AlignItems.CENTER);
+        headerContainer.addClassNames(Margin.Top.SMALL, Margin.Bottom.SMALL, AlignItems.CENTER);
     
         H2 header = new H2("Noah's Pizza");
         header.addClassNames(FontSize.XXXLARGE, Margin.Bottom.NONE, AlignItems.CENTER);
@@ -46,7 +47,7 @@ public class HomeView extends VerticalLayout {
 
         Div backButtonLayout = new Div();
         Button button = new Button("Newsletter beitreten");
-        button.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(HomeView.class)));
+        button.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(NewsletterView.class)));
         backButtonLayout.add(button);
     
         headerContainer.add(header, description, backButtonLayout);
