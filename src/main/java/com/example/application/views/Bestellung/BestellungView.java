@@ -1,4 +1,4 @@
-package com.example.application.views.helloworld;
+package com.example.application.views.Bestellung;
 
 import com.example.application.data.entity.SamplePerson;
 import com.example.application.data.service.SamplePersonService;
@@ -37,14 +37,14 @@ import org.springframework.data.jpa.domain.Specification;
 @PageTitle("Newsletter beitreten")
 @Route(value = "hello-world")
 @Uses(Icon.class)
-public class HelloWorldView extends Div {
+public class BestellungView extends Div {
 
     private Grid<SamplePerson> grid;
 
     private Filters filters;
     private final SamplePersonService samplePersonService;
 
-    public HelloWorldView(SamplePersonService SamplePersonService) {
+    public BestellungView(SamplePersonService SamplePersonService) {
         this.samplePersonService = SamplePersonService;
         setSizeFull();
         addClassNames("hello-world-view");

@@ -1,6 +1,6 @@
-package com.example.application.views.imagelist;
+package com.example.application.views.Menu;
 
-import com.example.application.views.start.HomeView;
+import com.example.application.views.Start.HomeView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;

@@ -1,4 +1,4 @@
-package com.example.application.views.dashboard;
+package com.example.application.views.Bestellung;
 
 import com.example.application.data.entity.SamplePerson;
 import com.example.application.data.service.SamplePersonService;
@@ -24,7 +24,7 @@ import com.vaadin.flow.router.Route;
 @PageTitle("Dashboard")
 @Route(value = "dashboard")
 @Uses(Icon.class)
-public class DashboardView extends Div {
+public class AddBestellungView extends Div {
 
     private TextField firstName = new TextField("First name");
     private TextField lastName = new TextField("Last name");
@@ -38,7 +38,7 @@ public class DashboardView extends Div {
 
     private Binder<SamplePerson> binder = new Binder<>(SamplePerson.class);
 
-    public DashboardView(SamplePersonService personService) {
+    public AddBestellungView(SamplePersonService personService) {
         addClassName("dashboard-view");
 
         add(createTitle());

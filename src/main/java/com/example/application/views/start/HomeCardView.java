@@ -1,6 +1,6 @@
-package com.example.application.views.start;
+package com.example.application.views.Start;
 
-import com.example.application.views.dashboard.DashboardView;
+import com.example.application.views.Bestellung.AddBestellungView;
 import com.vaadin.flow.component.charts.model.TextAlign;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;

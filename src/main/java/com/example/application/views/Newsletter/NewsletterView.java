@@ -1,7 +1,7 @@
-package com.example.application.views.personform;
+package com.example.application.views.Newsletter;
 
 import com.example.application.data.entity.Newsletter;
-import com.example.application.views.start.HomeView;
+import com.example.application.views.Start.HomeView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -9,6 +9,7 @@ import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
@@ -62,7 +63,10 @@ public class NewsletterView extends Div {
         binder.setBean(newsletter);
 
         clear.addClickListener(e -> clearForm());
-        save.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(HomeView.class)));
+        save.addClickListener(e -> {
+            Notification.show("Vielen Dank! Sie haben unseren Newsletter aboniert");
+            getUI().ifPresent(ui -> ui.navigate(HomeView.class));
+        });
         cancel.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(HomeView.class)));
     }
 

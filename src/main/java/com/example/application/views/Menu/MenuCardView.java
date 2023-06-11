@@ -1,4 +1,4 @@
-package com.example.application.views.imagelist;
+package com.example.application.views.Menu;
 
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;

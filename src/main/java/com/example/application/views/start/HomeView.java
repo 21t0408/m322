@@ -1,8 +1,10 @@
-package com.example.application.views.start;
+package com.example.application.views.Start;
 
-import com.example.application.views.dashboard.DashboardView;
-import com.example.application.views.imagelist.MenuView;
-import com.example.application.views.personform.NewsletterView;
+import com.example.application.views.Bestellung.BestellungView;
+import com.example.application.views.Bestellung.AddBestellungView;
+import com.example.application.views.Kontakt.KontaktView;
+import com.example.application.views.Menu.MenuView;
+import com.example.application.views.Newsletter.NewsletterView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
@@ -56,11 +58,11 @@ public class HomeView extends VerticalLayout {
         cardContainer.addClassNames(Gap.MEDIUM, AlignItems.CENTER);
 
         HomeCardView card1 = new HomeCardView("Bestellungen", "icons/bestellungen.png");
-        card1.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(DashboardView.class)));
+        card1.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(BestellungView.class)));
         HomeCardView card2 = new HomeCardView("Menükarte", "icons/menuKarte.png");
         card2.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(MenuView.class)));
         HomeCardView card3 = new HomeCardView("Kontakt", "icons/kontakt.png");
-        card3.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(DashboardView.class)));
+        card3.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(KontaktView.class)));
 
         cardContainer.add(card1, card2, card3);
     
