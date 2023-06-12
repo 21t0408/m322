@@ -93,6 +93,7 @@ public class NewsletterView extends Div {
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.addClassName("button-layout");
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
         buttonLayout.add(save);
         buttonLayout.add(cancel);
         buttonLayout.add(clear);

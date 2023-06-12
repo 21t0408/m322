@@ -1,7 +1,6 @@
 package com.example.application.views.Start;
 
 import com.example.application.views.Bestellung.BestellungView;
-import com.example.application.views.Bestellung.AddBestellungView;
 import com.example.application.views.Kontakt.KontaktView;
 import com.example.application.views.Menu.MenuView;
 import com.example.application.views.Newsletter.NewsletterView;
@@ -47,12 +46,12 @@ public class HomeView extends VerticalLayout {
         Paragraph description = new Paragraph("077 458 10 06");
         description.addClassNames(Margin.Top.NONE, TextColor.SECONDARY, AlignItems.CENTER);
 
-        Div backButtonLayout = new Div();
+        Div buttonLayout = new Div();
         Button button = new Button("Newsletter beitreten");
         button.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(NewsletterView.class)));
-        backButtonLayout.add(button);
+        buttonLayout.add(button);
     
-        headerContainer.add(header, description, backButtonLayout);
+        headerContainer.add(header, description, buttonLayout);
     
         HorizontalLayout cardContainer = new HorizontalLayout();
         cardContainer.addClassNames(Gap.MEDIUM, AlignItems.CENTER);

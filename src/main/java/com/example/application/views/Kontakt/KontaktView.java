@@ -1,18 +1,14 @@
 package com.example.application.views.Kontakt;
 
-import com.example.application.data.entity.SamplePerson;
-import com.example.application.data.service.SamplePersonService;
+import com.example.application.data.entity.Kontakt;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.customfield.CustomField;
-import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dependency.Uses;
-import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.notification.Notification;
@@ -24,7 +20,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.theme.lumo.LumoUtility.AlignContent;
 import com.vaadin.flow.theme.lumo.LumoUtility.AlignItems;
 import com.vaadin.flow.theme.lumo.LumoUtility.FontSize;
 import com.vaadin.flow.theme.lumo.LumoUtility.Margin;
@@ -33,9 +28,12 @@ import com.vaadin.flow.theme.lumo.LumoUtility.Padding;
 import com.vaadin.flow.theme.lumo.LumoUtility.TextColor;
 
 @PageTitle("Kontakt")
-@Route(value = "Contact")
+@Route(value = "Kontakt")
 @Uses(Icon.class)
 public class KontaktView extends Div {
+
+    private static Kontakt kontakt = new Kontakt();
+
     private EmailField email = new EmailField("Email Adresse");
     private PhoneNumberField phone = new PhoneNumberField("Telefonnummer");
     private TextArea message = new TextArea("Mittteilung");
@@ -43,9 +41,9 @@ public class KontaktView extends Div {
     private Button rollback = new Button("Zurücksetzen");
     private Button send = new Button("Absenden");
 
-    private Binder<SamplePerson> binder = new Binder<>(SamplePerson.class);
+    private Binder<Kontakt> binder = new Binder<>(Kontakt.class);
 
-    public KontaktView(SamplePersonService personService) {
+    public KontaktView() {
         addClassName("contact-view");
         addClassNames(MaxWidth.SCREEN_LARGE, Margin.Horizontal.AUTO, Padding.Bottom.MEDIUM, AlignItems.CENTER);
 
@@ -58,18 +56,18 @@ public class KontaktView extends Div {
         add(mainContainer);
 
         binder.bindInstanceFields(this);
-        clearForm();
+        binder.readBean(kontakt);
+        binder.setBean(kontakt);
 
         rollback.addClickListener(e -> clearForm());
         send.addClickListener(e -> {
-            personService.update(binder.getBean());
             Notification.show("Vielen Dank! Ihre Anfrage wurde versendet");
             clearForm();
         });
     }
 
     private void clearForm() {
-        binder.setBean(new SamplePerson());
+        binder.setBean(new Kontakt());
     }
 
     private Component createInformationLayout() {
@@ -118,7 +116,6 @@ public class KontaktView extends Div {
         phone.setWidth("100%");
         email.setWidth("100%");
         message.setWidth("100%");
-        
 
         formLayout.add(header);
         formLayout.add(phone, email, message);
