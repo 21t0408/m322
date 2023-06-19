@@ -1,7 +1,7 @@
 package com.example.application.views.Bestellung;
 
-import com.example.application.data.entity.SamplePerson;
-import com.example.application.data.service.SamplePersonService;
+import com.example.application.data.entity.Bestellung;
+import com.example.application.views.Start.HomeView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -11,17 +11,22 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.lumo.LumoUtility.AlignItems;
+import com.vaadin.flow.theme.lumo.LumoUtility.FontSize;
+import com.vaadin.flow.theme.lumo.LumoUtility.Margin;
 
-@PageTitle("Dashboard")
+@PageTitle("Bestellung hinzufügen")
 @Route(value = "dashboard")
 @Uses(Icon.class)
 public class AddBestellungView extends Div {
@@ -33,35 +38,35 @@ public class AddBestellungView extends Div {
     private PhoneNumberField phone = new PhoneNumberField("Phone number");
     private TextField occupation = new TextField("Occupation");
 
-    private Button cancel = new Button("Cancel");
-    private Button save = new Button("Save");
+    private Button cancel = new Button("Abbrechen");
+    private Button save = new Button("Bestellen");
 
-    private Binder<SamplePerson> binder = new Binder<>(SamplePerson.class);
+    private Binder<Bestellung> binder = new Binder<>(Bestellung.class);
 
-    public AddBestellungView(SamplePersonService personService) {
+    public AddBestellungView() {
         addClassName("dashboard-view");
 
-        add(createTitle());
+        VerticalLayout headerContainer = new VerticalLayout();
+        headerContainer.addClassNames(Margin.Top.SMALL, Margin.Bottom.SMALL, AlignItems.CENTER);
+    
+        H2 header = new H2("Meine Bestellungen");
+        header.addClassNames(FontSize.XXXLARGE, Margin.Bottom.NONE, AlignItems.CENTER);
+
         add(createFormLayout());
         add(createButtonLayout());
 
         binder.bindInstanceFields(this);
-        clearForm();
 
-        cancel.addClickListener(e -> clearForm());
+        cancel.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(BestellungView.class)));
         save.addClickListener(e -> {
-            personService.update(binder.getBean());
-            Notification.show(binder.getBean().getClass().getSimpleName() + " details stored.");
-            clearForm();
+            SaveBestellung();
+            Notification.show("Danke für ihre Bestellung!");
         });
     }
 
-    private void clearForm() {
-        binder.setBean(new SamplePerson());
-    }
+    private void SaveBestellung()
+    {
 
-    private Component createTitle() {
-        return new H3("Personal information");
     }
 
     private Component createFormLayout() {

@@ -20,7 +20,7 @@ import com.vaadin.flow.theme.lumo.LumoUtility.Width;
 
 public class MenuCardView extends ListItem {
 
-    public MenuCardView(String title, String url, String price) {
+    public MenuCardView(String title, String url, double price) {
         
         addClassNames(Background.CONTRAST_5, Display.FLEX, FlexDirection.COLUMN, AlignItems.START, Padding.MEDIUM,
                 BorderRadius.LARGE);
@@ -43,7 +43,7 @@ public class MenuCardView extends ListItem {
 
         Span badge = new Span();
         badge.getElement().setAttribute("theme", "badge");
-        badge.setText(price);
+        badge.setText(Double.toString(price));
 
         add(header, div, badge);
     }

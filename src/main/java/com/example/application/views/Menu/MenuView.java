@@ -1,5 +1,7 @@
 package com.example.application.views.Menu;
 
+import com.example.application.data.entity.Pizza;
+import com.example.application.data.service.PizzaSource;
 import com.example.application.views.Start.HomeView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
@@ -41,18 +43,17 @@ public class MenuView extends Main {
         HorizontalLayout cardContainer = new HorizontalLayout();
         cardContainer.addClassNames(Gap.MEDIUM, AlignItems.CENTER);
 
-        cardContainer.add(
-                new MenuCardView("Pizza Margharitta", "images/magherita.png", "19.90 CHF"),
-                new MenuCardView("Pizza Salami", "images/salami.png", "21.90 CHF"),
-                new MenuCardView("Pizza Diavolo", "images/diavolo.png", "22.50 CHF"),
-                new MenuCardView("Pizza Hawaii", "images/Hawaii.png", "22.50 CHF")
-        );
+        new PizzaSource();
+        for (Pizza pizza : PizzaSource.pizzas) {
+            MenuCardView card = new MenuCardView(pizza.getName(), pizza.getImg(), pizza.getPrice());
+            cardContainer.add(card);
+        }
 
         VerticalLayout backContainer = new VerticalLayout();
         backContainer.addClassNames(Margin.Top.SMALL, Margin.Bottom.XLARGE, AlignItems.CENTER);
 
         Div backButtonLayout = new Div();
-        Button back = new Button("Zueück");
+        Button back = new Button("Zurück");
         back.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(HomeView.class)));
         backButtonLayout.add(back);
 

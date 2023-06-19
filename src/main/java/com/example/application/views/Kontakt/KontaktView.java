@@ -1,6 +1,9 @@
 package com.example.application.views.Kontakt;
 
+import java.time.format.FormatStyle;
+
 import com.example.application.data.entity.Kontakt;
+import com.example.application.views.Start.HomeView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -48,12 +51,18 @@ public class KontaktView extends Div {
         addClassNames(MaxWidth.SCREEN_LARGE, Margin.Horizontal.AUTO, Padding.Bottom.MEDIUM, AlignItems.CENTER);
 
         HorizontalLayout mainContainer = new HorizontalLayout();
-        mainContainer.addClassNames(AlignItems.CENTER);
+        mainContainer.addClassNames(AlignItems.START);
 
         mainContainer.add(createInformationLayout());
         mainContainer.add(createFormLayout());
 
-        add(mainContainer);
+        Div backButtonLayout = new Div();
+        backButtonLayout.addClassNames(AlignItems.CENTER, Margin.LARGE);
+        Button back = new Button("Zurück");
+        back.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(HomeView.class)));
+        backButtonLayout.add(back);
+
+        add(mainContainer, backButtonLayout);
 
         binder.bindInstanceFields(this);
         binder.readBean(kontakt);
@@ -108,6 +117,9 @@ public class KontaktView extends Div {
         formLayout.addClassNames(AlignItems.CENTER);
         formLayout.setWidth("50%");
 
+        VerticalLayout forms = new VerticalLayout();
+        forms.addClassNames(AlignItems.CENTER);
+
         H2 header = new H2("Kritik oder Fragen");
         header.addClassNames(FontSize.XXXLARGE, Margin.Bottom.MEDIUM, AlignItems.CENTER);
 
@@ -117,8 +129,9 @@ public class KontaktView extends Div {
         email.setWidth("100%");
         message.setWidth("100%");
 
+        forms.add(phone, email, message);
         formLayout.add(header);
-        formLayout.add(phone, email, message);
+        formLayout.add(forms);
         formLayout.add(createButtonLayout());
         return formLayout;
     }

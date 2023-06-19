@@ -1,7 +1,5 @@
 package com.example.application.views.Start;
 
-import com.example.application.views.Bestellung.AddBestellungView;
-import com.vaadin.flow.component.charts.model.TextAlign;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.ListItem;
@@ -22,7 +20,7 @@ import com.vaadin.flow.theme.lumo.LumoUtility.Padding;
 public class HomeCardView extends ListItem {
 
     public HomeCardView(String title, String url) {
-        addClassNames(Background.CONTRAST_5, Display.FLEX, FlexDirection.COLUMN, AlignItems.START, Padding.MEDIUM,
+        addClassNames(Background.CONTRAST_5, Display.FLEX, FlexDirection.COLUMN, AlignItems.CENTER, Padding.MEDIUM,
                 BorderRadius.LARGE);
     
         Div div = new Div();
