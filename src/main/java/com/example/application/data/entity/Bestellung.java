@@ -1,26 +1,21 @@
 package com.example.application.data.entity;
 
+import java.time.LocalDate;
+
 public class Bestellung {
-    private String pizza;
-    private String preis;
+    private Pizza pizza;
     private String plz;
     private String ort;
     private String strasse;    
     private String hausNummer;
-    private String lieferDatum;
+    private LocalDate lieferDatum;
     private String bezahlungsart;    
 
-    public String getPizza() {
+    public Pizza getPizza() {
         return pizza;
     }
-    public void setPizza(String pizza) {
+    public void setPizza(Pizza pizza) {
         this.pizza = pizza;
-    }
-    public String getPreis() {
-        return preis;
-    }
-    public void setPreis(String preis) {
-        this.preis = preis;
     }
     public String getPlz() {
         return plz;
@@ -46,10 +41,10 @@ public class Bestellung {
     public void setStrasse(String strasse) {
         this.strasse = strasse;
     }
-    public String getLieferDatum() {
+    public LocalDate getLieferDatum() {
         return lieferDatum;
     }
-    public void setLieferDatum(String lieferDatum) {
+    public void setLieferDatum(LocalDate lieferDatum) {
         this.lieferDatum = lieferDatum;
     }
     public String getBezahlungsart() {

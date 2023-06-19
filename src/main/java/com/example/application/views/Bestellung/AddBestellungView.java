@@ -1,6 +1,9 @@
 package com.example.application.views.Bestellung;
 
 import com.example.application.data.entity.Bestellung;
+import com.example.application.data.entity.Pizza;
+import com.example.application.data.service.BestellungSource;
+import com.example.application.data.service.PizzaSource;
 import com.example.application.views.Start.HomeView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
@@ -17,6 +20,7 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
@@ -27,16 +31,17 @@ import com.vaadin.flow.theme.lumo.LumoUtility.FontSize;
 import com.vaadin.flow.theme.lumo.LumoUtility.Margin;
 
 @PageTitle("Bestellung hinzufügen")
-@Route(value = "dashboard")
+@Route(value = "AddBestellung")
 @Uses(Icon.class)
 public class AddBestellungView extends Div {
 
-    private TextField firstName = new TextField("First name");
-    private TextField lastName = new TextField("Last name");
-    private EmailField email = new EmailField("Email address");
-    private DatePicker dateOfBirth = new DatePicker("Birthday");
-    private PhoneNumberField phone = new PhoneNumberField("Phone number");
-    private TextField occupation = new TextField("Occupation");
+    private ComboBox<Pizza> pizza = new ComboBox<>("Pizza");
+    private TextField plz = new TextField("PLZ");
+    private TextField ort = new TextField("Ort");
+    private TextField strasse = new TextField("Straße");
+    private TextField hausNummer = new TextField("Hausnummer");
+    private DatePicker lieferDatum = new DatePicker("Lieferdatum");
+    private RadioButtonGroup<String> bezahlungsart = new RadioButtonGroup<>();
 
     private Button cancel = new Button("Abbrechen");
     private Button save = new Button("Bestellen");
@@ -48,10 +53,12 @@ public class AddBestellungView extends Div {
 
         VerticalLayout headerContainer = new VerticalLayout();
         headerContainer.addClassNames(Margin.Top.SMALL, Margin.Bottom.SMALL, AlignItems.CENTER);
-    
+
         H2 header = new H2("Meine Bestellungen");
         header.addClassNames(FontSize.XXXLARGE, Margin.Bottom.NONE, AlignItems.CENTER);
+        headerContainer.add(header);
 
+        add(headerContainer);
         add(createFormLayout());
         add(createButtonLayout());
 
@@ -59,20 +66,37 @@ public class AddBestellungView extends Div {
 
         cancel.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(BestellungView.class)));
         save.addClickListener(e -> {
-            SaveBestellung();
-            Notification.show("Danke für ihre Bestellung!");
+            saveBestellung();
+            Notification.show("Danke für Ihre Bestellung!");
         });
     }
 
-    private void SaveBestellung()
-    {
-
+    private void saveBestellung() {
+        Bestellung bestellung = binder.getBean();
+        BestellungSource.bestellungen.add(bestellung);
     }
 
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
-        email.setErrorMessage("Please enter a valid email address");
-        formLayout.add(firstName, lastName, dateOfBirth, phone, email, occupation);
+        new PizzaSource();
+        pizza.setItems(PizzaSource.pizzas);
+        pizza.setItemLabelGenerator(Pizza::getName);
+        formLayout.add(pizza);
+
+        HorizontalLayout plzOrtLayout = new HorizontalLayout();
+        plzOrtLayout.add(plz, ort);
+        formLayout.add(plzOrtLayout);
+
+        HorizontalLayout strasseHausnummerLayout = new HorizontalLayout();
+        strasseHausnummerLayout.add(strasse, hausNummer);
+        formLayout.add(strasseHausnummerLayout);
+
+        formLayout.add(lieferDatum);
+
+        bezahlungsart.setLabel("Bezahlungsart");
+        bezahlungsart.setItems("Bar", "Twint", "Karte");
+        formLayout.add(bezahlungsart);
+
         return formLayout;
     }
 
@@ -84,47 +108,4 @@ public class AddBestellungView extends Div {
         buttonLayout.add(cancel);
         return buttonLayout;
     }
-
-    private static class PhoneNumberField extends CustomField<String> {
-        private ComboBox<String> countryCode = new ComboBox<>();
-        private TextField number = new TextField();
-
-        public PhoneNumberField(String label) {
-            setLabel(label);
-            countryCode.setWidth("120px");
-            countryCode.setPlaceholder("Country");
-            countryCode.setAllowedCharPattern("[\\+\\d]");
-            countryCode.setItems("+354", "+91", "+62", "+98", "+964", "+353", "+44", "+972", "+39", "+225");
-            countryCode.addCustomValueSetListener(e -> countryCode.setValue(e.getDetail()));
-            number.setAllowedCharPattern("\\d");
-            HorizontalLayout layout = new HorizontalLayout(countryCode, number);
-            layout.setFlexGrow(1.0, number);
-            add(layout);
-        }
-
-        @Override
-        protected String generateModelValue() {
-            if (countryCode.getValue() != null && number.getValue() != null) {
-                String s = countryCode.getValue() + " " + number.getValue();
-                return s;
-            }
-            return "";
-        }
-
-        @Override
-        protected void setPresentationValue(String phoneNumber) {
-            String[] parts = phoneNumber != null ? phoneNumber.split(" ", 2) : new String[0];
-            if (parts.length == 1) {
-                countryCode.clear();
-                number.setValue(parts[0]);
-            } else if (parts.length == 2) {
-                countryCode.setValue(parts[0]);
-                number.setValue(parts[1]);
-            } else {
-                countryCode.clear();
-                number.clear();
-            }
-        }
-    }
-
 }

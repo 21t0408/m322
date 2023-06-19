@@ -60,7 +60,7 @@ public class BestellungView extends Div {
         grid = new Grid<>(Bestellung.class, false);
         grid.addColumn("pizza").setAutoWidth(true);
         grid.addColumn("lieferDatum").setAutoWidth(true);
-        grid.addColumn("preis").setAutoWidth(true);
+        //grid.addColumn("preis").setAutoWidth(true);
 
         grid.setItems(BestellungSource.bestellungen);
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
