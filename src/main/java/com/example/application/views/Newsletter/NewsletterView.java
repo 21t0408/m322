@@ -71,7 +71,9 @@ public class NewsletterView extends Div {
     }
 
     private void clearForm() {
+        newsletter = new Newsletter();
         binder.setBean(new Newsletter());
+        binder.readBean(newsletter);
     }
 
     private Component createFormLayout() {

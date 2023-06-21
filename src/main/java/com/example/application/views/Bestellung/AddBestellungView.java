@@ -35,6 +35,8 @@ import com.vaadin.flow.theme.lumo.LumoUtility.Margin;
 @Uses(Icon.class)
 public class AddBestellungView extends Div {
 
+    private static Bestellung bestellung = new Bestellung();
+
     private ComboBox<Pizza> pizza = new ComboBox<>("Pizza");
     private TextField plz = new TextField("PLZ");
     private TextField ort = new TextField("Ort");
@@ -63,11 +65,14 @@ public class AddBestellungView extends Div {
         add(createButtonLayout());
 
         binder.bindInstanceFields(this);
+        binder.readBean(bestellung);
+        binder.setBean(bestellung);
 
         cancel.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(BestellungView.class)));
         save.addClickListener(e -> {
             saveBestellung();
             Notification.show("Danke für Ihre Bestellung!");
+            getUI().ifPresent(ui -> ui.navigate(BestellungView.class));
         });
     }
 
@@ -77,24 +82,35 @@ public class AddBestellungView extends Div {
     }
 
     private Component createFormLayout() {
-        FormLayout formLayout = new FormLayout();
+        VerticalLayout formLayout = new VerticalLayout();
+        formLayout.setWidth("100%");
+        formLayout.addClassNames(AlignItems.CENTER);
         new PizzaSource();
         pizza.setItems(PizzaSource.pizzas);
         pizza.setItemLabelGenerator(Pizza::getName);
+        pizza.setWidth("60%");
         formLayout.add(pizza);
 
         HorizontalLayout plzOrtLayout = new HorizontalLayout();
+        plz.setWidth("100%");
+        ort.setWidth("100%");
         plzOrtLayout.add(plz, ort);
+        plzOrtLayout.setWidth("60%");
         formLayout.add(plzOrtLayout);
 
         HorizontalLayout strasseHausnummerLayout = new HorizontalLayout();
+        strasse.setWidth("100%");
+        hausNummer.setWidth("100%");
         strasseHausnummerLayout.add(strasse, hausNummer);
+        strasseHausnummerLayout.setWidth("60%");
         formLayout.add(strasseHausnummerLayout);
 
+        lieferDatum.setWidth("60%");
         formLayout.add(lieferDatum);
 
         bezahlungsart.setLabel("Bezahlungsart");
         bezahlungsart.setItems("Bar", "Twint", "Karte");
+        bezahlungsart.setWidth("60%");
         formLayout.add(bezahlungsart);
 
         return formLayout;
@@ -102,7 +118,8 @@ public class AddBestellungView extends Div {
 
     private Component createButtonLayout() {
         HorizontalLayout buttonLayout = new HorizontalLayout();
-        buttonLayout.addClassName("button-layout");
+        buttonLayout.setWidth("100%");
+        buttonLayout.addClassNames(AlignItems.CENTER);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         buttonLayout.add(save);
         buttonLayout.add(cancel);
