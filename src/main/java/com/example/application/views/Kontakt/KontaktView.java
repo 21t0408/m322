@@ -1,7 +1,5 @@
 package com.example.application.views.Kontakt;
 
-import java.time.format.FormatStyle;
-
 import com.example.application.data.entity.Kontakt;
 import com.example.application.views.Start.HomeView;
 import com.vaadin.flow.component.Component;
