@@ -18,6 +18,7 @@ import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
@@ -77,6 +78,7 @@ public class AddBestellungView extends Div {
     }
 
     private void saveBestellung() {
+        binder.setBean(bestellung);
         Bestellung bestellung = binder.getBean();
         BestellungSource.bestellungen.add(bestellung);
     }
@@ -119,10 +121,11 @@ public class AddBestellungView extends Div {
     private Component createButtonLayout() {
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.setWidth("100%");
-        buttonLayout.addClassNames(AlignItems.CENTER);
+        buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         buttonLayout.add(save);
         buttonLayout.add(cancel);
         return buttonLayout;
     }
+
 }
